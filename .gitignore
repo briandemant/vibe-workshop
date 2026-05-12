@@ -3,3 +3,4 @@ data/
 .opencode-global/
 IDEAS.md
 __pycache__/
+.coverage
