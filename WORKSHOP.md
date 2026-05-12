@@ -34,6 +34,7 @@ The wrapper sets:
 - **stage-02**: Create an HTML API Help Page at `/`
 - **stage-03**: Build a /recommendations endpoint
 - **stage-04**: Category-based recommendations endpoint
+- **stage-05**: Consistent recommendation response format
 
 ## Workshop flow
 
