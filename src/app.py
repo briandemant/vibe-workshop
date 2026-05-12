@@ -1,4 +1,5 @@
 from datetime import UTC, datetime
+from uuid import uuid4
 
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
@@ -20,6 +21,7 @@ def root_help() -> str:
     <h2>GET endpoints</h2>
     <ul>
       <li><a href="/healthcheck">GET /healthcheck</a></li>
+      <li><a href="/recommendations">GET /recommendations</a></li>
     </ul>
 
     <h2>POST endpoints</h2>
@@ -35,3 +37,8 @@ def root_help() -> str:
 def healthcheck() -> dict[str, str]:
     now = datetime.now(tz=UTC).strftime("%H:%M:%S")
     return {"message": f"hello the time is {now}"}
+
+
+@app.get("/recommendations")
+def recommendations() -> list[str]:
+    return [str(uuid4()) for _ in range(10)]
