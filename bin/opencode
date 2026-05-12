@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
+
+export OPENCODE_CONFIG="${REPO_ROOT}/.opencode-global/opencode.json"
+export OPENCODE_CONFIG_DIR="${REPO_ROOT}/.opencode-global"
+
+exec opencode "$@"

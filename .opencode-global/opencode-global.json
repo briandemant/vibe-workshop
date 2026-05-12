@@ -1,0 +1,44 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "theme": "opencode",
+  "mcp": {
+    "atlassian": {
+      "type": "local",
+      "command": ["uvx", "mcp-atlassian"],
+      "environment": {
+        "JIRA_URL": "https://tv2cms.atlassian.net",
+        "JIRA_USERNAME": "funny@tv2.dk",
+        "JIRA_API_TOKEN": "{env:JIRA_API_TOKEN}"
+      },
+      "enabled": false
+    },
+    "context7": {
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp",
+      "headers": {
+        "CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}"
+      },
+      "enabled": false
+    },
+    "tv2-code-search": {
+      "type": "local",
+      "command": [
+        "uv",
+        "run",
+        "--project",
+        "/Users/brde/Code/tv2/tv2-code-search-mcp",
+        "python",
+        "/Users/brde/Code/tv2/tv2-code-search-mcp/main.py"
+      ],
+      "enabled": false
+    }
+  },
+  "agent": {
+    "build": {
+      "model": "github-copilot/gpt-5.3-codex"
+    },
+    "plan": {
+      "model": "github-copilot/claude-opus-4.6"
+    }
+  }
+}
