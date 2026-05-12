@@ -1,40 +1,36 @@
-# Stage 01: Hello FastAPI
+# Stage 02: Create an HTML API Help Page at `/`
 
-In this stage, you will create your first API endpoint using FastAPI.
+In this stage, you will make the root endpoint (`/`) return a useful HTML help page for your API.
 
-## Goal
+The goal is to make it easy for someone opening the API in a browser to understand:
 
-Build and run a minimal FastAPI app that exposes a `GET /hello` endpoint returning a simple hello-world style JSON response.
+- what endpoints currently exist
+- which HTTP method each endpoint uses
+- how to call each endpoint
 
-## What you will do
+## Requirements
 
-- Add FastAPI app setup in the project entrypoint.
-- Implement a `GET /hello` route.
-- Return JSON from the route, for example:
+Implement a `GET /` endpoint that returns HTML (not JSON, not plain text).
 
-```json
-{"message": "Hello, world!"}
-```
+Your page should include:
 
-- Run the app locally and verify the endpoint in a browser or with curl.
+- A short heading/title for the API help page
+- A section listing implemented endpoints
+- For each `GET` endpoint:
+  - show a plain clickable link (for example: `/healthcheck`)
+- For each `POST` endpoint:
+  - show a `curl` example command demonstrating how to call it
 
-## Success criteria
+## Scope for this stage
 
-You are done when all of the following are true:
+Right now, your app currently includes:
 
-- The project starts successfully with `uv run`.
-- Requesting `GET /hello` returns HTTP 200.
-- The response is valid JSON containing a hello message.
+- `GET /healthcheck`
 
-## Helpful hints
+Your help page must include that endpoint now, and should be written clearly so it can be expanded later as more endpoints are added.
 
-- If FastAPI is missing, add it with `uv add fastapi`.
-- You may also need an ASGI server such as Uvicorn (`uv add uvicorn`).
-- Start by getting a single endpoint working before adding anything else.
+## Notes
 
-## Out of scope for this stage
-
-- Multiple endpoints
-- Request body validation
-- Database integration
-- Authentication
+- Keep the page simple and readable.
+- Focus on usefulness over styling.
+- Do not remove or break existing endpoints while adding `/`.
