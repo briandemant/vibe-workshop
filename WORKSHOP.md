@@ -30,7 +30,7 @@ The wrapper sets:
 
 ## Stages
 
-- **stage-01**: Create a hello world FastAPI endpoint
+- **stage-01**: Create a hello healthcheck FastAPI endpoint
 
 ## Workshop flow
 
