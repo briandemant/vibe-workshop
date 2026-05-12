@@ -57,3 +57,13 @@ Common locations used in this repository:
 - `.opencode/skill/`: project-local opencode skills.
 - `.opencode/command/`: project-local opencode slash commands.
 - `plans/`: plan documents and templates.
+
+## Bash Conventions
+
+Prefer single-command bash invocations.
+
+- Do not chain commands with `&&`, `;`, or `|` unless strictly needed.
+- Strictly needed examples: a follow-up command depends on a side effect that must happen in the same shell.
+- When commands are independent, run them as separate bash calls instead of chaining.
+- Avoid prefixing commands with environment variables (for example `FOO=bar git ...`) unless required.
+- This helps command-specific permission allowlists (for example `git *`) match reliably and reduces unnecessary approval prompts.
