@@ -21,14 +21,17 @@ def test_recommendations_returns_ten_uuid_strings() -> None:
     response = client.get("/recommendations")
     payload = response.json()
 
-    assert isinstance(payload, list)
-    assert len(payload) == 10
-    for item in payload:
+    assert isinstance(payload, dict)
+    assert payload["fallback"] is False
+    recommendations = payload["recommendations"]
+    assert isinstance(recommendations, list)
+    assert len(recommendations) == 10
+    for item in recommendations:
         assert isinstance(item, str)
         UUID(item)
 
 
 def test_recommendations_are_regenerated_per_request() -> None:
-    first = client.get("/recommendations").json()
-    second = client.get("/recommendations").json()
+    first = client.get("/recommendations").json()["recommendations"]
+    second = client.get("/recommendations").json()["recommendations"]
     assert set(first) != set(second)

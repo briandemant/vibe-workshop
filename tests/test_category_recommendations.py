@@ -10,15 +10,18 @@ def test_category_recommendations_returns_ten_items() -> None:
 
     assert response.status_code == 200
     payload = response.json()
-    assert isinstance(payload, list)
-    assert len(payload) == 10
+    assert isinstance(payload, dict)
+    assert payload["fallback"] is False
+    assert payload["category"] == "drama"
+    assert isinstance(payload["recommendations"], list)
+    assert len(payload["recommendations"]) == 10
 
 
 def test_category_recommendations_use_category_prefix_and_uuid_shape() -> None:
     response = client.get("/recommendations/drama")
-    payload = response.json()
+    recommendations = response.json()["recommendations"]
 
-    for item in payload:
+    for item in recommendations:
         parts = item.split("-")
         assert len(parts) == 5
         assert parts[0] == "drama000"
