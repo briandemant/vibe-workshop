@@ -31,6 +31,7 @@ The wrapper sets:
 ## Stages
 
 - **stage-01**: Create a hello healthcheck FastAPI endpoint
+- **stage-02**: Create an HTML API Help Page at `/`
 
 ## Workshop flow
 
