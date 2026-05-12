@@ -10,7 +10,10 @@ Create the next workshop stage branch.
    - If `$ARGUMENTS` is provided, treat it as an explicit stage value and normalize it to `stage-NN`.
      - Examples: `05` -> `stage-05`, `stage-7` -> `stage-07`, `stage-12` -> `stage-12`.
    - If `$ARGUMENTS` is empty and current branch is `main`, target is `stage-01`.
-   - If `$ARGUMENTS` is empty and current branch matches `stage-NN`, target is the next number with two-digit zero padding.
+   - If `$ARGUMENTS` is empty and current branch matches `stage-NN` or `stage-NN-solution`, alternate between exercise and solution branches for each stage:
+     - `stage-NN` -> `stage-NN-solution`
+     - `stage-NN-solution` -> `stage-(NN+1)` (two-digit zero padding)
+     - Examples: `stage-01` -> `stage-01-solution`, `stage-01-solution` -> `stage-02`, `stage-02` -> `stage-02-solution`.
    - Otherwise, ask the user which stage name to create and stop.
 3. Run `git status --porcelain`.
    - If output is not empty, ask the user if the current changes should be committed before branching.
