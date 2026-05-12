@@ -22,6 +22,13 @@ def test_root_help_contains_healthcheck_link() -> None:
     assert "GET /healthcheck" in body
 
 
+def test_root_help_contains_recommendations_link() -> None:
+    response = client.get("/")
+    body = response.text
+    assert 'href="/recommendations"' in body
+    assert "GET /recommendations" in body
+
+
 def test_root_help_contains_post_curl_guidance() -> None:
     response = client.get("/")
     body = response.text
