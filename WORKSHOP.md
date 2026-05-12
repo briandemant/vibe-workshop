@@ -30,7 +30,7 @@ The wrapper sets:
 
 ## Stages
 
-- Stage headlines are maintained by `/explain`.
+- **stage-01**: Create a hello world FastAPI endpoint
 
 ## Workshop flow
 
