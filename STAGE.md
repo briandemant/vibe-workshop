@@ -1,36 +1,31 @@
-# Stage 02: Create an HTML API Help Page at `/`
+# Stage 03: Recommendations Endpoint
 
-In this stage, you will make the root endpoint (`/`) return a useful HTML help page for your API.
+In this stage, you will add a new API endpoint that returns recommendation IDs.
 
-The goal is to make it easy for someone opening the API in a browser to understand:
+## Goal
 
-- what endpoints currently exist
-- which HTTP method each endpoint uses
-- how to call each endpoint
+Create a `GET /recommendations` endpoint that responds with a JSON array of 10 random UUID strings.
 
 ## Requirements
 
-Implement a `GET /` endpoint that returns HTML (not JSON, not plain text).
+- Add a new route at `GET /recommendations`.
+- The response body must be JSON.
+- Return exactly 10 items.
+- Each item must be a UUID string.
+- UUID values should be randomly generated per request.
 
-Your page should include:
+## Acceptance Criteria
 
-- A short heading/title for the API help page
-- A section listing implemented endpoints
-- For each `GET` endpoint:
-  - show a plain clickable link (for example: `/healthcheck`)
-- For each `POST` endpoint:
-  - show a `curl` example command demonstrating how to call it
+Your stage is complete when all of the following are true:
 
-## Scope for this stage
-
-Right now, your app currently includes:
-
-- `GET /healthcheck`
-
-Your help page must include that endpoint now, and should be written clearly so it can be expanded later as more endpoints are added.
+- Requesting `GET /recommendations` returns HTTP `200`.
+- The response is valid JSON.
+- The response is an array with length `10`.
+- Every item is a string in UUID format.
+- Repeated requests return different values often enough to show randomness.
 
 ## Notes
 
-- Keep the page simple and readable.
-- Focus on usefulness over styling.
-- Do not remove or break existing endpoints while adding `/`.
+- Reuse existing project patterns for route registration and response handling.
+- Keep implementation small and focused.
+- Do not add persistence for this stage.
