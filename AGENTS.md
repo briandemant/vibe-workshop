@@ -18,6 +18,20 @@ This is a Python project managed with `uv` and pinned to Python 3.12.
 - NEVER use `STAGE.md` as context, even indirectly.
 - Write or overwrite `STAGE.md` only through the `/explain` command flow.
 
+## Stage Help Page
+
+Whenever a stage adds or changes an API endpoint, the `/` HTML help page must be updated.
+
+- Update `src/app.py` `root_help()` to mention the new or changed endpoint.
+- For every documented endpoint, include:
+  - A short label with method and route.
+  - At least one good usage example (working request).
+  - At least one bad usage example showing invalid input and error response.
+- When an endpoint accepts constrained values (for example, allowed categories), make the allowed values discoverable on the help page.
+- Extend `tests/test_root_help.py` with assertions that verify the new endpoint appears and both good and bad examples are present.
+
+This convention applies even when `STAGE.md` does not explicitly require a help page update.
+
 ## Run Commands
 
 Always run Python through `uv run` in this repository.
