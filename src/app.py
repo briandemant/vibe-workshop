@@ -9,6 +9,17 @@ app = FastAPI()
 ALLOWED_CATEGORIES = ["action", "børn", "comedy", "drama", "entertainment"]
 
 
+def _generate_recommendation_ids(prefix: str | None = None) -> list[str]:
+    if prefix is None:
+        return [str(uuid4()) for _ in range(10)]
+
+    values: list[str] = []
+    for _ in range(10):
+        _, second, third, fourth, fifth = str(uuid4()).split("-")
+        values.append(f"{prefix}-{second}-{third}-{fourth}-{fifth}")
+    return values
+
+
 @app.get("/", response_class=HTMLResponse)
 def root_help() -> str:
     return """
@@ -33,9 +44,11 @@ def root_help() -> str:
 
     <p>Good example:</p>
     <pre><code>curl http://localhost:8000/recommendations/drama
-[
-  "drama000-1234-5678-9abc-def012345678"
-]</code></pre>
+{
+  "recommendations": ["drama000-1234-5678-9abc-def012345678"],
+  "fallback": false,
+  "category": "drama"
+}</code></pre>
 
     <p>Bad example (invalid category):</p>
     <pre><code>curl http://localhost:8000/recommendations/sport
@@ -63,12 +76,12 @@ def healthcheck() -> dict[str, str]:
 
 
 @app.get("/recommendations")
-def recommendations() -> list[str]:
-    return [str(uuid4()) for _ in range(10)]
+def recommendations() -> dict[str, list[str] | bool]:
+    return {"recommendations": _generate_recommendation_ids(), "fallback": False}
 
 
 @app.get("/recommendations/{category}")
-def recommendations_for_category(category: str) -> list[str]:
+def recommendations_for_category(category: str) -> dict[str, list[str] | bool | str]:
     if category not in ALLOWED_CATEGORIES:
         raise HTTPException(
             status_code=422,
@@ -80,8 +93,8 @@ def recommendations_for_category(category: str) -> list[str]:
         )
 
     prefix = category.ljust(8, "0")
-    values: list[str] = []
-    for _ in range(10):
-        _, second, third, fourth, fifth = str(uuid4()).split("-")
-        values.append(f"{prefix}-{second}-{third}-{fourth}-{fifth}")
-    return values
+    return {
+        "recommendations": _generate_recommendation_ids(prefix=prefix),
+        "fallback": False,
+        "category": category,
+    }
