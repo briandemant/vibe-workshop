@@ -55,6 +55,7 @@ Ruff is configured via `ruff.toml`.
 - Format code with `uv run ruff format .`.
 - Lint code with `uv run ruff check .`.
 - When fixing lint issues automatically, use `uv run ruff check . --fix`.
+- CI also enforces formatting with `uv run ruff format . --check` on every push.
 
 ## Testing
 
@@ -62,6 +63,7 @@ Use pytest through `uv run`.
 
 - Run all tests with `uv run pytest`.
 - Run targeted tests with `uv run pytest <path-or-nodeid>`.
+- CI enforces 100% coverage with `uv run pytest --cov=src --cov-report=term-missing --cov-fail-under=100` on every push.
 
 ## Repository Layout
 

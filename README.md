@@ -34,3 +34,13 @@ The wrapper sets:
 2. rename `.opencode-global/opencode-global.json` to `.opencode-global/opencode.json`
 3. Ask the agent to create or update a plan in `plans/`.
 4. Use project commands (for example `/lint` and `/test`) as you iterate.
+
+## CI quality gate
+
+Pushes trigger GitHub Actions CI with strict quality gates:
+
+- formatting must pass (`uv run ruff format . --check`)
+- linting must pass (`uv run ruff check .`)
+- tests must pass with full coverage (`uv run pytest --cov=src --cov-report=term-missing --cov-fail-under=100`)
+
+Run these locally before pushing to avoid CI failures.
