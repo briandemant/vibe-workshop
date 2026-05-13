@@ -36,6 +36,7 @@ The wrapper sets:
 - **stage-04**: Category-based recommendations endpoint
 - **stage-05**: Consistent recommendation response format
 - **stage-06**: Create an interactive `/create-issue` command
+- **stage-07**: CI on Push with 100% Coverage and Lint/Format Gate
 
 ## Workshop flow
 
